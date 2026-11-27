@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>НПУ NG — Академія: атестація на підвищення в званні</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="bg-grid"></div>
+
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="brand" onclick="navigate('home'); return false;">
+        <div class="brand-shield">
+          <svg viewBox="0 0 36 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 2L32 7.5V19.5C32 29.2 26 36.8 18 40C10 36.8 4 29.2 4 19.5V7.5L18 2Z" fill="#0B1324" stroke="#F6C33E" stroke-width="2.2"/>
+            <path d="M18 6L28 10V19.5C28 27 23.4 33 18 35.6C12.6 33 8 27 8 19.5V10L18 6Z" fill="#132240"/>
+            <polygon points="18,10 19.6,14.5 24.4,14.5 20.5,17.3 22,21.8 18,19 14,21.8 15.5,17.3 11.6,14.5 16.4,14.5" fill="#F6C33E"/>
+            <path d="M12 26.5L18 23.5L24 26.5" stroke="#3B82F6" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">НПУ <span>NG</span></div>
+          <div class="brand-sub">АКАДЕМІЯ · АТЕСТАЦІЯ</div>
+        </div>
+      </a>
+
+      <nav class="nav-links" id="main-nav">
+        <a href="#home" class="nav-link active" data-nav="home" onclick="navigate('home'); return false;">Головна</a>
+        <a href="#ranks" class="nav-link" data-nav="ranks" onclick="navigate('ranks'); return false;">Атестація</a>
+        <a href="#promotion" class="nav-link" data-nav="promotion" onclick="navigate('promotion'); return false;">Підвищення</a>
+        <a href="#reattestation" class="nav-link" data-nav="reattestation" onclick="navigate('reattestation'); return false;">Переатестація</a>
+        <a href="#pomichnyk" class="nav-link" data-nav="pomichnyk" onclick="navigate('pomichnyk'); return false;">НПУ-Помічник</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ГОЛОВНА + ВИБІР ЗВАННЯ -->
+    <section id="view-home" class="view active">
+      <div class="container hero">
+        <div class="hero-left">
+          <div class="pill-badge">
+            <span class="dot"></span>
+            АКАДЕМІЯ НПУ ШТАТУ NG
+          </div>
+          <h1 class="hero-title">
+            <span class="hero-title-line hero-title-main">Атестація</span>
+            <span class="hero-title-line outline-text">на підвищення</span>
+            <span class="hero-title-line accent-text">в званні</span>
+          </h1>
+          <p class="hero-desc">
+            Оберіть звання, на яке претендуєте. Прочитайте лекцію у власному темпі, а коли будете готові — пройдіть тестування. Результат ви побачите одразу.
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-gold" onclick="scrollToRanks()">
+              Обрати звання <span class="arrow">→</span>
+            </button>
+            <button class="btn btn-dark" onclick="toggleHowItWorks()">
+              Як це працює
+            </button>
+          </div>
+
+          <div id="how-it-works-box" class="how-box hidden">
+            <div class="how-step"><strong>1. Вибір звання:</strong> Оберіть потрібний ранг (Рядовий, Капрал або Сержант).</div>
+            <div class="how-step"><strong>2. Вивчення лекції:</strong> Читайте повний текст лекції без обмеження часу та відстежуйте прогрес.</div>
+            <div class="how-step"><strong>3. Тестування (25 хв):</strong> Прохідний бал — 80%. Після відповіді на питання натисніть завершення, щоб побачити результат.</div>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="reglament-card">
+            <div class="reg-header">
+              <span>РЕГЛАМЕНТ АТЕСТАЦІЇ</span>
+              <span class="reg-code">NG-УКЗ</span>
+            </div>
+            <div class="reg-grid">
+              <div class="reg-item">
+                <div class="reg-label">ЗВАНЬ</div>
+                <div class="reg-val">3</div>
+              </div>
+              <div class="reg-item">
+                <div class="reg-label">ПРОХІДНИЙ БАЛ</div>
+                <div class="reg-val">80%</div>
+              </div>
+              <div class="reg-item">
+                <div class="reg-label">ЧАС НА ТЕСТ</div>
+                <div class="reg-val">25 хв</div>
+              </div>
+              <div class="reg-item">
+                <div class="reg-label">ЛЕКЦІЯ</div>
+                <div class="reg-val sm">без ліміту</div>
+              </div>
+            </div>
+            <div class="reg-epaulettes">
+              <div class="mini-ep" onclick="openLecture('private')">
+                <div class="ep-box sm"><span class="ep-btn"></span></div>
+                <span>РЯДОВИЙ</span>
+              </div>
+              <div class="mini-ep" onclick="openLecture('corporal')">
+                <div class="ep-box sm"><span class="ep-btn"></span><span class="chevron"></span><span class="chevron"></span></div>
+                <span>КАПРАЛ</span>
+              </div>
+              <div class="mini-ep" onclick="openLecture('sergeant')">
+                <div class="ep-box sm"><span class="ep-btn"></span><span class="chevron"></span><span class="chevron"></span><span class="chevron"></span></div>
+                <span>СЕРЖАНТ</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container ranks-section" id="ranks-anchor">
+        <div class="ranks-grid">
+          <article class="rank-card">
+            <div class="rank-bg-num">1</div>
+            <div class="rank-top">
+              <div class="ep-box lg"><span class="ep-btn"></span></div>
+              <span class="exam-tag">Іспит №1</span>
+            </div>
+            <h2 class="rank-name">Рядовий</h2>
+            <div class="rank-subtitle">Внутрішній статут НПУ та Закон про НПУ</div>
+            <p class="rank-desc">Фундамент служби: призначення поліції, принципи, повноваження, структура та дисципліна.</p>
+            <div class="rank-tags">
+              <span>Закон про НПУ</span>
+              <span>Внутрішній статут</span>
+              <span>Ієрархія звань</span>
+              <span>Заходи примусу</span>
+            </div>
+            <div class="rank-metrics">
+              <div><div class="m-val">~18 хв</div><div class="m-lbl">ЛЕКЦІЯ</div></div>
+              <div><div class="m-val">40</div><div class="m-lbl">ПИТАНЬ</div></div>
+              <div><div class="m-val">25 хв</div><div class="m-lbl">ТЕСТ</div></div>
+            </div>
+            <button class="btn btn-gold full-width" onclick="openLecture('private')">Почати з лекції <span class="arrow">→</span></button>
+          </article>
+
+          <article class="rank-card">
+            <div class="rank-bg-num">2</div>
+            <div class="rank-top">
+              <div class="ep-box lg"><span class="ep-btn"></span><span class="chevron"></span><span class="chevron"></span></div>
+              <span class="exam-tag">Іспит №2</span>
+            </div>
+            <h2 class="rank-name">Капрал</h2>
+            <div class="rank-subtitle">Дорожній, Адміністративний та Етичний кодекси</div>
+            <p class="rank-desc">Робота на дорозі та з громадянами: трафік-стоп, адмінпровадження, етика й корупція.</p>
+            <div class="rank-tags">
+              <span>Дорожній кодекс</span>
+              <span>Адмінкодекс</span>
+              <span>Етичний кодекс</span>
+              <span>Трафік-стоп</span>
+            </div>
+            <div class="rank-metrics">
+              <div><div class="m-val">~13 хв</div><div class="m-lbl">ЛЕКЦІЯ</div></div>
+              <div><div class="m-val">35</div><div class="m-lbl">ПИТАНЬ</div></div>
+              <div><div class="m-val">25 хв</div><div class="m-lbl">ТЕСТ</div></div>
+            </div>
+            <button class="btn btn-gold full-width" onclick="openLecture('corporal')">Почати з лекції <span class="arrow">→</span></button>
+          </article>
+
+          <article class="rank-card">
+            <div class="rank-bg-num">3</div>
+            <div class="rank-top">
+              <div class="ep-box lg"><span class="ep-btn"></span><span class="chevron"></span><span class="chevron"></span><span class="chevron"></span></div>
+              <span class="exam-tag">Іспит №3</span>
+            </div>
+            <h2 class="rank-name">Сержант</h2>
+            <div class="rank-subtitle">Процесуальний та Кримінальний кодекси</div>
+            <p class="rank-desc">Затримання, права затриманого, обшук, докази та основи кримінального права.</p>
+            <div class="rank-tags">
+              <span>Процесуальний кодекс</span>
+              <span>Затримання</span>
+              <span>Обшук і докази</span>
+              <span>Кримінальний кодекс</span>
+            </div>
+            <div class="rank-metrics">
+              <div><div class="m-val">~17 хв</div><div class="m-lbl">ЛЕКЦІЯ</div></div>
+              <div><div class="m-val">30</div><div class="m-lbl">ПИТАНЬ</div></div>
+              <div><div class="m-val">25 хв</div><div class="m-lbl">ТЕСТ</div></div>
+            </div>
+            <button class="btn btn-gold full-width" onclick="openLecture('sergeant')">Почати з лекції <span class="arrow">→</span></button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ПЕРЕАТЕСТАЦІЯ -->
+    <section id="view-reattestation" class="view">
+      <div class="container reatt-wrap">
+        <div class="reatt-heading">
+          <div class="pill-badge"><span class="dot"></span>ПЕРЕВІРКА ЗНАНЬ</div>
+          <h1 class="promotion-title">Переатестація</h1>
+          <p class="promotion-intro">Для початку тестування введіть код доступу. Після підтвердження вкажіть нік, статик і екзаменатора. Тест містить 45 запитань, на відповіді відведено 25 хвилин. Для складання потрібно набрати щонайменше 85%.</p>
+        </div>
+
+        <div class="reatt-gate">
+          <form id="reattestation-code-form" onsubmit="verifyReattestationCode(event)">
+            <div class="form-group">
+              <label for="reattestation-code">Код для початку переатестації</label>
+              <input type="text" id="reattestation-code" autocomplete="off" placeholder="Введіть код" required />
+            </div>
+            <p id="reattestation-code-error" class="error-msg hidden" role="alert">Код не підійшов. Перевірте його та спробуйте ще раз.</p>
+            <button id="reattestation-code-button" class="btn btn-gold" type="submit">Підтвердити код →</button>
+          </form>
+
+          <form id="reattestation-candidate-form" class="hidden" onsubmit="startReattestation(event)">
+            <div class="reatt-confirmed">Код підтверджено. Заповніть дані, щоб розпочати тест.</div>
+            <div class="form-group">
+              <label for="reattestation-name">Ім’я та прізвище або ігровий нік</label>
+              <input type="text" id="reattestation-name" placeholder="Вкажіть ім’я або нікнейм" required />
+            </div>
+            <div class="form-group">
+              <label for="reattestation-static">Статик (ID)</label>
+              <input type="text" id="reattestation-static" placeholder="Наприклад: #1266" required />
+            </div>
+            <div class="form-group">
+              <label for="reattestation-examiner">Екзаменатор</label>
+              <input type="text" id="reattestation-examiner" placeholder="Хто проводить іспит" required />
+            </div>
+            <button class="btn btn-gold" type="submit">Почати переатестацію →</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- СИСТЕМА ПІДВИЩЕННЯ -->
+    <section id="view-promotion" class="view">
+      <div class="container promotion-wrap">
+        <div class="promotion-heading">
+          <div class="pill-badge"><span class="dot"></span>МЕТОДИЧНІ МАТЕРІАЛИ</div>
+          <h1 class="promotion-title">Система підвищення</h1>
+          <p class="promotion-intro">Вимоги для переходу на наступний ранг у НПУ: навчання, перевірка знань і практична підготовка.</p>
+          <div class="promotion-lecture-note">Лекції можна пройти на вкладці «Атестація»: оберіть звання, на яке плануєте підвищитися.</div>
+        </div>
+
+        <div class="promotion-list">
+          <article class="promotion-card">
+            <header class="promotion-card-head">
+              <div><span class="promotion-step">1 → 2 РАНГ</span><h2>Кадет поліції → Рядовий поліції</h2></div>
+              <span class="promotion-rank-badge">Рядовий</span>
+            </header>
+            <div class="promotion-requirements">
+              <section class="promotion-requirement">
+                <h3>1. Навчання та ознайомлення</h3>
+                <p>Самостійно опрацюйте Внутрішній статут НПУ та Закон «Про НПУ». Матеріали розміщені у форумному розділі «Лекції до самостійного вивчення». Наприкінці лекції зробіть фото-доказ. Також вивчіть тен-коди та їхнє призначення.</p>
+              </section>
+              <section class="promotion-requirement">
+                <h3>2. Службове посвідчення</h3>
+                <p>Отримайте службове посвідчення.</p>
+              </section>
+              <section class="promotion-requirement">
+                <h3>3. Перевірка знань</h3>
+                <p>Успішно складіть залік із Внутрішнього статуту НПУ та Закону «Про НПУ». Для цього подайте заявку у форумному розділі «Заявка на іспит».</p>
+              </section>
+              <section class="promotion-requirement">
+                <h3>4. Допуск до підвищення</h3>
+                <p>Виконайте всі вимоги та отримайте підтвердження успішного складання заліку від уповноваженого керівництва. Після цього вас допускають до підвищення на звання Рядового поліції.</p>
+              </section>
+            </div>
+            <button class="btn btn-gold" type="button" onclick="openLecture('private')">Лекція для звання «Рядовий» →</button>
+          </article>
+
+          <article class="promotion-card">
+            <header class="promotion-card-head">
+              <div><span class="promotion-step">2 → 3 РАНГ</span><h2>Рядовий поліції → Капрал поліції</h2></div>
+              <span class="promotion-rank-badge">Капрал</span>
+            </header>
+            <div class="promotion-requirements">
+              <section class="promotion-requirement">
+                <h3>1. Навчання</h3>
+                <p>Самостійно опрацюйте Дорожній, Адміністративний та Етичний кодекси у форумному розділі «Лекції до самостійного вивчення». Наприкінці лекції зробіть фото-доказ.</p>
+              </section>
+              <section class="promotion-requirement">
+                <h3>2. Перевірка знань</h3>
+                <p>Успішно складіть іспит із Дорожнього, Адміністративного та Етичного кодексів. Подайте заявку у форумному розділі «Заявка на іспит».</p>
+              </section>
+              <section class="promotion-requirement">
+                <h3>3. Практична підготовка</h3>
+                <p>Відбудьте 60 хвилин вартової служби на посту в холі Управління поліції або на внутрішньому КПП. Служба проходить під наглядом офіцера у званні не нижче Лейтенанта.</p>
+                <p>Доповідайте в рацію на початку, кожні 30 хвилин і після завершення служби. Приклад: <code>/r Почав постову службу в холі (час)</code>, <code>/r Продовжую постову службу в холі (час)</code>, <code>/r Закінчив постову службу в холі (час)</code>. Перед початком увімкніть боді-камеру клавішею F7.</p>
+                <p class="promotion-alternative"><strong>Альтернатива:</strong> 60 хвилин вартової служби можна замінити участю у спеціальній операції за погодженням із керівництвом.</p>
+              </section>
+              <section class="promotion-requirement">
+                <h3>4. Допуск до підвищення</h3>
+                <p>Після виконання вимог вас допускають до підвищення на звання Капрала поліції.</p>
+              </section>
+            </div>
+            <button class="btn btn-gold" type="button" onclick="openLecture('corporal')">Лекція для звання «Капрал» →</button>
+          </article>
+
+          <article class="promotion-card">
+            <header class="promotion-card-head">
+              <div><span class="promotion-step">3 → 4 РАНГ</span><h2>Капрал поліції → Сержант поліції</h2></div>
+              <span class="promotion-rank-badge">КД — 24 години</span>
+            </header>
+            <div class="promotion-requirements">
+              <section class="promotion-requirement">
+                <h3>1. Навчання</h3>
+                <p>Самостійно опрацюйте Процесуальний і Кримінальний кодекси у форумному розділі «Лекції до самостійного вивчення». Наприкінці лекції зробіть фото-доказ.</p>
+              </section>
+              <section class="promotion-requirement">
+                <h3>2. Перевірка знань</h3>
+                <p>Успішно складіть іспити з Процесуального та Кримінального кодексів. Подайте заявку у форумному розділі «Заявка на іспит».</p>
+              </section>
+              <section class="promotion-requirement">
+                <h3>3. Практичний іспит</h3>
+                <p>Складіть практичний іспит із проведення затримання та трафік-стопу. Подайте заявку у форумному розділі «Заявка на практичний залік».</p>
+              </section>
+              <section class="promotion-requirement">
+                <h3>4. Навчальне патрулювання</h3>
+                <p>Візьміть участь у патрулюванні міста щонайменше 60 хвилин у парному екіпажі, у ролі пасажира. Напарник має бути не нижче Сержанта поліції (4-й ранг). Під час патрулювання обов’язково фіксуйте доповіді у службову рацію.</p>
+                <p class="promotion-alternative"><strong>Альтернатива:</strong> навчальне патрулювання можна замінити участю у спеціальній операції за погодженням із керівництвом.</p>
+              </section>
+              <section class="promotion-requirement">
+                <h3>5. Присяга та допуск</h3>
+                <p>Складіть присягу. Після успішного виконання всіх вимог вас допускають до підвищення на звання Сержанта поліції.</p>
+              </section>
+            </div>
+            <button class="btn btn-gold" type="button" onclick="openLecture('sergeant')">Лекція для звання «Сержант» →</button>
+          </article>
+        </div>
+
+        <div class="promotion-evidence-note"><strong>Фото-докази:</strong> боді-камера має бути увімкнена на кожному фото. Звіти, зроблені з вимкненою боді-камерою, не приймаються.</div>
+      </div>
+    </section>
+
+    <!-- ЛЕКЦІЯ -->
+    <section id="view-lecture" class="view">
+      <div class="container lecture-wrap">
+        <button class="back-link" onclick="navigate('home')">← Усі звання</button>
+
+        <div class="lecture-hero">
+          <div id="lecture-epaulette" class="ep-box xl"></div>
+          <div class="lecture-head-info">
+            <div class="kicker" id="lecture-kicker">КРОК 1 З 2 · ЛЕКЦІЯ НА ЗВАННЯ «РЯДОВИЙ»</div>
+            <h1 class="lecture-title" id="lecture-title">Внутрішній статут НПУ та Закон про НПУ</h1>
+            <div class="lecture-pills">
+              <span id="lecture-read-time">≈ 18 хв читання</span>
+              <span>Без обмеження часу</span>
+              <span id="lecture-next-exam">Далі: Іспит №1 · 40 питань</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lecture-layout">
+          <aside class="lecture-sidebar">
+            <div class="toc-card">
+              <div class="toc-title">ЗМІСТ ЛЕКЦІЇ</div>
+              <ul id="lecture-toc" class="toc-list"></ul>
+            </div>
+
+            <div class="progress-card">
+              <div class="progress-head">
+                <span>Прочитано</span>
+                <strong id="read-percent">0%</strong>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" id="read-progress-bar"></div>
+              </div>
+              <div class="progress-hint">Кнопка тестування — в кінці лекції.</div>
+            </div>
+          </aside>
+
+          <div class="lecture-body">
+            <div id="lecture-content" class="lecture-article"></div>
+
+            <div class="step2-card">
+              <div class="hazard-stripe"></div>
+              <div class="step2-inner">
+                <div class="kicker">КРОК 2 З 2</div>
+                <h2>Лекцію прочитано? Час перевірити знання.</h2>
+                <p id="step2-desc"></p>
+                <p id="exam-lock-hint" class="progress-hint">Прокрутіть лекцію до кінця, щоб розпочати відповідний тест.</p>
+                <button id="start-exam-button" class="btn btn-gold" onclick="openCandidateModal()">
+                  Пройти тестування <span class="arrow">→</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ІСПИТ -->
+    <section id="view-exam" class="view">
+      <div class="exam-sticky-bar">
+        <div class="container exam-bar-inner">
+          <div>
+            <div class="exam-bar-kicker" id="exam-bar-rank">АТЕСТАЦІЯ · РЯДОВИЙ</div>
+            <div class="exam-bar-title" id="exam-bar-title">Іспит №1</div>
+          </div>
+          <div class="exam-bar-right">
+            <div class="exam-note">На відповіді відведено 25 хвилин</div>
+            <div class="timer-box" id="exam-timer">25:00</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container exam-container">
+        <div class="candidate-strip">
+          <span>Кандидат: <strong id="exam-cand-name">—</strong></span>
+          <span>Статик: <strong id="exam-cand-static">—</strong></span>
+          <span>Відповідей: <strong id="exam-answered-count">0 / 40</strong></span>
+        </div>
+
+        <div class="exam-layout">
+          <aside class="question-nav-card">
+            <div class="question-nav-head">
+              <div class="kicker">НАВІГАЦІЯ ІСПИТУ</div>
+              <strong id="question-nav-progress">Питання 1 з 40</strong>
+            </div>
+            <div id="question-nav" class="question-nav-grid" aria-label="Перейти до питання"></div>
+            <div class="question-nav-legend"><span class="legend-dot answered"></span> Відповідь збережено</div>
+          </aside>
+
+          <div class="exam-workspace">
+            <div id="questions-container" class="questions-list"></div>
+            <div class="exam-footer exam-step-controls">
+              <button id="previous-question-button" class="btn btn-dark" type="button" onclick="previousQuestion()">← Назад</button>
+              <button id="next-question-button" class="btn btn-gold" type="button" onclick="nextQuestion()">Наступне питання →</button>
+              <button id="submit-exam-button" class="btn btn-gold lg-btn hidden" type="button" onclick="submitExam('manual')">Завершити іспит →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- РЕЗУЛЬТАТ -->
+    <section id="view-result" class="view">
+      <div class="container result-wrap">
+        <div class="kicker" id="res-kicker">РЕЗУЛЬТАТ ТЕСТУВАННЯ · РЯДОВИЙ</div>
+        <h1 class="result-main-title" id="res-exam-title">Іспит №1</h1>
+
+        <div class="result-banner" id="res-banner">
+          <div class="result-top-line" id="res-top-line"></div>
+          <div class="result-banner-body">
+            <div class="score-ring-wrap">
+              <svg class="score-ring" viewBox="0 0 140 140">
+                <circle class="ring-bg" cx="70" cy="70" r="58" />
+                <circle class="ring-fg" id="res-ring-circle" cx="70" cy="70" r="58" />
+              </svg>
+              <div class="ring-center">
+                <div class="ring-pct" id="res-pct">0%</div>
+                <div class="ring-frac" id="res-frac">0 / 40</div>
+              </div>
+            </div>
+
+            <div class="result-details">
+              <div class="stamp" id="res-stamp">НЕ СКЛАВ(ЛА)</div>
+              <div id="anticheat-warning" class="anticheat-warning hidden" role="alert">Увага! Перемикання на іншу вкладку завершує іспит. Результат анульовано.</div>
+              <p class="result-msg" id="res-msg"></p>
+
+              <div class="result-meta-grid">
+                <div class="meta-box"><div class="meta-lbl">КАНДИДАТ</div><div class="meta-val" id="res-cand">—</div></div>
+                <div class="meta-box"><div class="meta-lbl">СТАТИК</div><div class="meta-val" id="res-static">—</div></div>
+                <div class="meta-box"><div class="meta-lbl">ЧАС</div><div class="meta-val" id="res-time">00:00</div></div>
+                <div class="meta-box"><div class="meta-lbl">ЗАВЕРШЕНО</div><div class="meta-val" id="res-date">—</div></div>
+                <div class="meta-box examiner-meta"><div class="meta-lbl">ЕКЗАМЕНАТОР</div><div class="meta-val" id="res-examiner">—</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-stats-row">
+          <div class="stat-box"><div class="stat-num green" id="res-correct">0</div><div class="stat-lbl">ПРАВИЛЬНО</div></div>
+          <div class="stat-box"><div class="stat-num red" id="res-wrong">40</div><div class="stat-lbl">ПОМИЛКИ</div></div>
+          <div class="stat-box"><div class="stat-num gold" id="res-pass-percent">80%</div><div class="stat-lbl">ПРОХІДНИЙ БАЛ</div></div>
+        </div>
+
+        <div class="result-actions">
+          <button class="btn btn-dark" type="button" onclick="downloadResultImage()">Завантажити результат</button>
+          <button id="back-to-lecture-result" class="btn btn-dark" onclick="backToLectureFromResult()">← Повернутися до лекції</button>
+          <button class="btn btn-gold" onclick="navigate('home')">На головну</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- НПУ-ПОМІЧНИК -->
+    <section id="view-pomichnyk" class="view">
+      <div class="container pomichnyk-wrap">
+        <div class="pomichnyk-heading">
+          <div class="pill-badge"><span class="dot"></span>ІНСТРУМЕНТ ДЛЯ НПУ</div>
+          <h1 class="pomichnyk-title">НПУ-Помічник</h1>
+          <p class="hero-desc">Перегляньте презентацію програми, завантажте її та отримайте ключ активації.</p>
+        </div>
+
+        <div class="pomichnyk-card">
+          <div class="pomichnyk-video-wrap">
+            <video class="pomichnyk-video" controls preload="metadata" playsinline>
+              <source src="media/npu-pomichnyk-prezentatsiia.mp4" type="video/mp4" />
+              Ваш браузер не підтримує відтворення відео.
+            </video>
+          </div>
+          <div class="pomichnyk-actions">
+            <a class="btn btn-gold" href="https://surl.li/qwakdx" target="_blank" rel="noopener noreferrer">Скачати програму ↓</a>
+            <div class="activation-action">
+              <button id="activation-key-button" class="btn btn-dark" type="button" onclick="showActivationKey()">Отримати ключ активації</button>
+              <div id="activation-key-loader" class="activation-key-loader hidden" aria-label="Генерується ключ">
+                <span></span><span></span><span></span>
+              </div>
+              <div id="activation-key-result" class="activation-key hidden" role="status" aria-live="polite">
+                <strong>NG-FIL-4444-NPY-POCKET</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- МОДАЛКА РЕЄСТРАЦІЇ КАНДИДАТА -->
+  <div id="modal-candidate" class="modal-backdrop hidden">
+    <div class="modal-box">
+      <div class="modal-head">
+        <div>
+          <div class="kicker">РЕЄСТРАЦІЯ НА ІСПИТ</div>
+          <h3 id="cand-modal-title">Іспит №1</h3>
+        </div>
+        <button class="close-btn" onclick="closeModal('modal-candidate')">✕</button>
+      </div>
+      <div class="warning-box">
+        На відповіді відведено 25 хвилин.
+      </div>
+      <form onsubmit="startExam(event)">
+        <div class="form-group">
+          <label>Ім'я, прізвище або ігровий нік</label>
+          <input type="text" id="input-cand-name" placeholder="Вкажіть ім'я або нікнейм" required />
+        </div>
+        <div class="form-group">
+          <label>Статик (ID)</label>
+          <input type="text" id="input-cand-static" placeholder="Наприклад: #1266" required />
+        </div>
+        <div class="form-group">
+          <label for="input-cand-examiner">Екзаменатор</label>
+          <input type="text" id="input-cand-examiner" placeholder="Хто проводить іспит" required />
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-dark" onclick="closeModal('modal-candidate')">Скасувати</button>
+          <button type="submit" class="btn btn-gold">Почати тест →</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- МОДУЛЬНІ ДАНІ ПО КАТЕГОРІЯМ -->
+  <script>window.RANKS_DATA = {};</script>
+  <script src="js/data/private.js"></script>
+  <script src="js/data/corporal.js"></script>
+  <script src="js/data/sergeant.js"></script>
+  <script src="js/data/reattestation.js"></script>
+
+  <!-- МОДУЛЬНА ЛОГІКА -->
+  <script src="js/storage.js"></script>
+  <script src="js/lecture.js"></script>
+  <script src="js/exam.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
